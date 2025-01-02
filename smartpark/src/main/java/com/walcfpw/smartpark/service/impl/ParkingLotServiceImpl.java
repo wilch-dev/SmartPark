@@ -57,6 +57,35 @@ public class ParkingLotServiceImpl implements ParkingLotService {
         return parkingLotEntities.parallelStream().map(parkingLotEntity -> parkingLotEntity.toDto()).toList();
     }
 
+    @Override
+    public ParkingLotDto increaseOccupiedSlots(ParkingLotDto parkingLotDto) throws Exception {
+        ParkingLotDto dtoToSave = parkingLotDto;
+        dtoToSave.setCurrentlyOccupiedSlots(parkingLotDto.getCurrentlyOccupiedSlots() + 1);
+
+        // check again for safety
+        ParkingLotDto currentParkingInDb = findParkingLotById(parkingLotDto);
+        if (currentParkingInDb.getTotalCapacity().intValue() == currentParkingInDb.getCurrentlyOccupiedSlots().intValue()){
+            throw new Exception(String.format("Parking %s full", currentParkingInDb.getLotId()));
+        }
+
+        return parkingLotRepository.save(dtoToSave.toEntity()).toDto();
+    }
+
+    @Override
+    public ParkingLotDto decreaseOccupiedSlots(ParkingLotDto parkingLotDto) throws Exception {
+        ParkingLotDto dtoToSave = parkingLotDto;
+        dtoToSave.setCurrentlyOccupiedSlots(parkingLotDto.getCurrentlyOccupiedSlots() - 1);
+
+        // check again for safety
+        ParkingLotDto currentParkingInDb = findParkingLotById(parkingLotDto);
+        if (currentParkingInDb.getCurrentlyOccupiedSlots().intValue() == 0){
+            throw new Exception(String.format("Parking %s empty. Code should not end up here.", currentParkingInDb.getLotId()));
+        }
+
+        return parkingLotRepository.save(dtoToSave.toEntity()).toDto();
+    }
+
+
     private void validateParkingLotRegistration(ParkingLotDto parkingLotDto) throws Exception {
         validateParkingLotId(parkingLotDto);
         if(parkingLotDto.getTotalCapacity() <= 0) {

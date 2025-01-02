@@ -29,7 +29,7 @@ public class DataLoader implements CommandLineRunner {
         ParkingLotEntity parkingLot1 = ParkingLotEntity.builder()
                 .lotId("one-parkade")
                 .location("7th Street")
-                .totalCapacity(10)
+                .totalCapacity(3)
                 .currentlyOccupiedSlots(0)
                 .costPerMinute(10.0)
                 .build();
@@ -59,12 +59,12 @@ public class DataLoader implements CommandLineRunner {
                 .ownerName("John Doe")
                 .build();
         VehicleEntity vehicle2 = VehicleEntity.builder()
-                .licensePlate("BBB-234")
+                .licensePlate("BBB-123")
                 .vehicleType(VehicleType.CAR)
                 .ownerName("Jill Hampton")
                 .build();
         VehicleEntity vehicle3 = VehicleEntity.builder()
-                .licensePlate("CCC-456")
+                .licensePlate("CCC-123")
                 .vehicleType(VehicleType.TRUCK)
                 .ownerName("Alex Cruz")
                 .build();

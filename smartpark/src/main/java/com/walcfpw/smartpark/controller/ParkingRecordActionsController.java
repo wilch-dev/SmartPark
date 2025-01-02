@@ -24,9 +24,9 @@ public class ParkingRecordActionsController {
         return parkingRecordService.timeOut(parkingRecordDto);
     }
 
-    @PutMapping("/all")
+    @GetMapping("/all")
     List<ParkingRecordDto> getAllRecords() throws Exception {
-        return parkingRecordService.timeOut(parkingRecordDto);
+        return parkingRecordService.getAllParkingRecords();
     }
 
 }
