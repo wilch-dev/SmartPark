@@ -1,5 +1,6 @@
 package com.walcfpw.smartpark.data.repository.entities;
 
+import com.walcfpw.smartpark.data.dto.VehicleDto;
 import com.walcfpw.smartpark.data.enums.VehicleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,4 +26,12 @@ public class VehicleEntity {
 
     @Column(nullable = false)
     String ownerName;
+
+    public VehicleDto toDto(){
+        return VehicleDto.builder()
+                .licensePlate(this.licensePlate)
+                .vehicleType(this.vehicleType.toString())
+                .ownerName(this.ownerName)
+                .build();
+    }
 }

@@ -39,7 +39,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
     }
 
     @Override
-    public ParkingLotDto findParkingLot(ParkingLotDto parkingLotDto) throws Exception {
+    public ParkingLotDto findParkingLotById(ParkingLotDto parkingLotDto) throws Exception {
         validateParkingLotId(parkingLotDto);
         Optional<ParkingLotEntity> parkingLotEntity = parkingLotRepository.findById(parkingLotDto.getLotId());
         if (parkingLotEntity.isEmpty()) {
@@ -50,11 +50,11 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
     @Override
     public List<ParkingLotDto> getAllParkingLots() throws Exception {
-        List <ParkingLotEntity> parkingLotEntity = parkingLotRepository.findAll();
-        if (parkingLotEntity.isEmpty()) {
+        List <ParkingLotEntity> parkingLotEntities = parkingLotRepository.findAll();
+        if (parkingLotEntities.isEmpty()) {
             throw new Exception("No parking lots found in db.");
         }
-        return parkingLotEntity.parallelStream().map(entity -> entity.toDto()).toList();
+        return parkingLotEntities.parallelStream().map(parkingLotEntity -> parkingLotEntity.toDto()).toList();
     }
 
     private void validateParkingLotRegistration(ParkingLotDto parkingLotDto) throws Exception {

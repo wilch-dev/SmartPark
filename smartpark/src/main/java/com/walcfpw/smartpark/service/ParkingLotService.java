@@ -8,7 +8,7 @@ import java.util.List;
 public interface ParkingLotService {
 
     ParkingLotDto registerParkingLot(ParkingLotDto parkingLotDto) throws Exception;
-    ParkingLotDto findParkingLot(ParkingLotDto parkingLotDto) throws Exception;
+    ParkingLotDto findParkingLotById(ParkingLotDto parkingLotDto) throws Exception;
     List<ParkingLotDto> getAllParkingLots() throws Exception;
 
 }
