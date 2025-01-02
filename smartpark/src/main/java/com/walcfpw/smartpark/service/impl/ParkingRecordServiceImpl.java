@@ -56,6 +56,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
     @Override
     public ParkingRecordDto timeOut(ParkingRecordDto parkingRecordDto) throws Exception {
         VehicleDto vehicleInDb = vehicleService.findRegisteredVehicleByLicensePlate(VehicleDto.builder().licensePlate(parkingRecordDto.getLicensePlate()).build());
+        ParkingLotDto parkingLotInDb = parkingLotService.findParkingLotById(ParkingLotDto.builder().lotId(parkingRecordDto.getLotId()).build());
 
         Optional <ParkingRecordEntity> parkingRecordEntityInDb =
                 parkingRecordRepository.findLatestRecordOfLicensePlateBasedOnTimeIn(vehicleInDb.getLicensePlate());
@@ -68,10 +69,13 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         if (Objects.nonNull(parkingRecordEntityInDb.get().getTimeOut())){
             throw new Exception(String.format("Vehicle with license plate %s is not parked", parkingRecordDto.getLicensePlate()));
         }
+        // if lotId and current db record doesn't match
+        if (!parkingRecordEntityInDb.get().getParkingLotEntity().getLotId().equals(parkingRecordDto.getLotId())){
+            throw new Exception(String.format("Vehicle with license plate %s is not parked in inputted parking lot", parkingRecordDto.getLicensePlate()));
+        }
 
         LocalDateTime timeInOfRecord = parkingRecordEntityInDb.get().getTimeIn();
 
-        ParkingLotDto parkingLotInDb = parkingLotService.findParkingLotById(ParkingLotDto.builder().lotId(parkingRecordDto.getLotId()).build());
         Long secondsParked = timeInOfRecord.until(LocalDateTime.now(), ChronoUnit.SECONDS);
         Integer minutesParked = convertSecondsToMinutesRoundUp(secondsParked);
 
