@@ -2,13 +2,13 @@ package com.walcfpw.smartpark.service;
 
 
 import com.walcfpw.smartpark.data.dto.ParkingLotDto;
-import com.walcfpw.smartpark.errors.CostPerMinuteException;
-import com.walcfpw.smartpark.errors.ParkingLotIdExistsException;
-import com.walcfpw.smartpark.errors.ParkingLotIdTooLongException;
-import com.walcfpw.smartpark.errors.TotalCapacityException;
+
+import java.util.List;
 
 public interface ParkingLotService {
 
-    ParkingLotDto registerParkingLot(ParkingLotDto parkingLotDto) throws ParkingLotIdExistsException, TotalCapacityException, CostPerMinuteException, ParkingLotIdTooLongException;
+    ParkingLotDto registerParkingLot(ParkingLotDto parkingLotDto) throws Exception;
+    ParkingLotDto findParkingLot(ParkingLotDto parkingLotDto) throws Exception;
+    List<ParkingLotDto> getAllParkingLots() throws Exception;
 
 }
