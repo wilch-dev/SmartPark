@@ -1,0 +1,18 @@
+meta {
+  name: Find Parking Lot by ID
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/parking-lot/find
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "lotId":"D3a-IDa"
+  }
+  
+}

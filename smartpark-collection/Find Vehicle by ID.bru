@@ -1,0 +1,18 @@
+meta {
+  name: Find Vehicle by ID
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8080/vehicle/find
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "licensePlate":"D3a-IDa"
+  }
+  
+}

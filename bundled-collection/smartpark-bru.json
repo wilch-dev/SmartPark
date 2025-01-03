@@ -1,0 +1,321 @@
+{
+  "name": "smartpark",
+  "version": "1",
+  "items": [
+    {
+      "type": "http",
+      "name": "Car timeIn",
+      "seq": 7,
+      "request": {
+        "url": "http://localhost:8080/record/in",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"lotId\":\"one-parkade\",\n  \"licensePlate\": \"AAA-123\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg5MTA2NiwiZXhwIjoxNzM1ODkxOTY2fQ.UQ8vqjx9PeKZ4bvGqdpVUJ25XNXEtqvL1XJQgoXjkbk"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Car timeOut",
+      "seq": 8,
+      "request": {
+        "url": "http://localhost:8080/record/out",
+        "method": "PUT",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"lotId\":\"one-parkade\",\n  \"licensePlate\": \"AAA-123\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg5MTA2NiwiZXhwIjoxNzM1ODkxOTY2fQ.UQ8vqjx9PeKZ4bvGqdpVUJ25XNXEtqvL1XJQgoXjkbk"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Find Parking Lot by ID",
+      "seq": 2,
+      "request": {
+        "url": "http://localhost:8080/parking-lot/find",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"lotId\":\"D3a-IDa\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Find Vehicle by ID",
+      "seq": 5,
+      "request": {
+        "url": "http://localhost:8080/vehicle/find",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"licensePlate\":\"D3a-IDa\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get All Parking Lots",
+      "seq": 3,
+      "request": {
+        "url": "http://localhost:8080/parking-lot/all",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg4OTc1NCwiZXhwIjoxNzM1ODkwNjU0fQ.y8bQhZ_NWFiViSAhLPl52Ni1CsDleb6Uuxjongsfcl8"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get All Parking Records In Lot",
+      "seq": 10,
+      "request": {
+        "url": "http://localhost:8080/record/lot",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"lotId\":\"one-parkade\"\n}",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg5MjE4NCwiZXhwIjoxNzM1ODkzMDg0fQ.YaHbpabms85rf1eWLKYh1-_EqvLH8jBjfXvOd3wkRDw"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get All Parking Records",
+      "seq": 9,
+      "request": {
+        "url": "http://localhost:8080/record/all",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg5MjE4NCwiZXhwIjoxNzM1ODkzMDg0fQ.YaHbpabms85rf1eWLKYh1-_EqvLH8jBjfXvOd3wkRDw"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Get All Vehicles",
+      "seq": 6,
+      "request": {
+        "url": "http://localhost:8080/vehicle/all",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Register Parking Lot",
+      "seq": 1,
+      "request": {
+        "url": "http://localhost:8080/parking-lot/register",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"lotId\":\"D3a-IDa\",\n  \"location\": \"BGC\", \n  \"totalCapacity\": 11, \n  \"currentlyOccupiedSlots\": 0,\n  \"costPerMinute\": 10.0\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "bearer",
+          "bearer": {
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg4OTc1NCwiZXhwIjoxNzM1ODkwNjU0fQ.y8bQhZ_NWFiViSAhLPl52Ni1CsDleb6Uuxjongsfcl8"
+          }
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "Register Vehicle",
+      "seq": 4,
+      "request": {
+        "url": "http://localhost:8080/vehicle/register",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"licensePlate\":\"DDD-123\",\n  \"vehicleType\": \"MOTORCYCLE\", \n  \"ownerName\": \"Slim Jim\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "login",
+      "seq": 13,
+      "request": {
+        "url": "http://localhost:8080/auth/authenticate",
+        "method": "POST",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "json",
+          "json": "{\n  \"username\":\"admin\", \n  \"password\":\"admin\"\n}\n",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    },
+    {
+      "type": "http",
+      "name": "registerUser",
+      "seq": 12,
+      "request": {
+        "url": "",
+        "method": "GET",
+        "headers": [],
+        "params": [],
+        "body": {
+          "mode": "none",
+          "formUrlEncoded": [],
+          "multipartForm": []
+        },
+        "script": {},
+        "vars": {},
+        "assertions": [],
+        "tests": "",
+        "auth": {
+          "mode": "none"
+        }
+      }
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "smartpark",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
