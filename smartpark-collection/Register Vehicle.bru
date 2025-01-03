@@ -1,0 +1,20 @@
+meta {
+  name: Register Vehicle
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/vehicle/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "licensePlate":"DDD-123",
+    "vehicleType": "MOTORCYCLE", 
+    "ownerName": "Slim Jim"
+  }
+  
+}

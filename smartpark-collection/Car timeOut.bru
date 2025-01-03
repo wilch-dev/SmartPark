@@ -1,0 +1,23 @@
+meta {
+  name: Car timeOut
+  type: http
+  seq: 8
+}
+
+put {
+  url: http://localhost:8080/record/out
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg5NDU0MiwiZXhwIjoxNzM1ODk1NDQyfQ.l0yMnNcDCtkjwsE2lOPl9wg8JgJjfhfa5xc6AZspFO8
+}
+
+body:json {
+  {
+    "lotId":"two-parkade",
+    "licensePlate": "AAA-123"
+  }
+  
+}

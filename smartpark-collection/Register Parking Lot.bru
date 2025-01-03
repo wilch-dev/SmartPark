@@ -1,0 +1,26 @@
+meta {
+  name: Register Parking Lot
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/parking-lot/register
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTczNTg4OTc1NCwiZXhwIjoxNzM1ODkwNjU0fQ.y8bQhZ_NWFiViSAhLPl52Ni1CsDleb6Uuxjongsfcl8
+}
+
+body:json {
+  {
+    "lotId":"D3a-IDa",
+    "location": "BGC", 
+    "totalCapacity": 11, 
+    "currentlyOccupiedSlots": 0,
+    "costPerMinute": 10.0
+  }
+  
+}
