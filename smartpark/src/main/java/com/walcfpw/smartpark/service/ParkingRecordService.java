@@ -10,4 +10,5 @@ public interface ParkingRecordService {
     ParkingRecordDto timeOut(ParkingRecordDto parkingRecordDto) throws Exception;
     List<ParkingRecordDto> getAllParkingRecords() throws Exception;
 
+    void getAllParkingRecordsThatArentOutIn15MinsAndTimeThemOut()throws Exception;
 }

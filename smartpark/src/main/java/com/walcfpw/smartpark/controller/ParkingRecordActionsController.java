@@ -28,5 +28,11 @@ public class ParkingRecordActionsController {
     List<ParkingRecordDto> getAllRecords() throws Exception {
         return parkingRecordService.getAllParkingRecords();
     }
+    @GetMapping("/")
+    Boolean test() throws Exception {
+        parkingRecordService.getAllParkingRecordsThatArentOutIn15MinsAndTimeThemOut();
+        return true;
+    }
+
 
 }

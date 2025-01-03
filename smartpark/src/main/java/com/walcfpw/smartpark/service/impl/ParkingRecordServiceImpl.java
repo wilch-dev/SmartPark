@@ -4,7 +4,6 @@ import com.walcfpw.smartpark.data.dto.ParkingLotDto;
 import com.walcfpw.smartpark.data.dto.ParkingRecordDto;
 import com.walcfpw.smartpark.data.dto.VehicleDto;
 import com.walcfpw.smartpark.data.repository.ParkingRecordRepository;
-import com.walcfpw.smartpark.data.repository.entities.ParkingLotEntity;
 import com.walcfpw.smartpark.data.repository.entities.ParkingRecordEntity;
 import com.walcfpw.smartpark.service.ParkingLotService;
 import com.walcfpw.smartpark.service.ParkingRecordService;
@@ -65,7 +64,7 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         if (parkingRecordEntityInDb.isEmpty()){
             throw new Exception(String.format("Vehicle with license plate %s is not parked", parkingRecordDto.getLicensePlate()));
         }
-        // Since we already check empty, then it's already there. If record exists but last record is a timeOut, meaning car left.
+        // Since we already check empty, then it's already there. If record exists but last record is a timeOut, meaning the car left.
         if (Objects.nonNull(parkingRecordEntityInDb.get().getTimeOut())){
             throw new Exception(String.format("Vehicle with license plate %s is not parked", parkingRecordDto.getLicensePlate()));
         }
@@ -109,5 +108,19 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
             return Math.toIntExact(totalMins + 1);
         }
         return Math.toIntExact(totalMins);
+    }
+
+    @Override
+    public void getAllParkingRecordsThatArentOutIn15MinsAndTimeThemOut()throws Exception{
+        List<ParkingRecordEntity> parkingRecordEntities = parkingRecordRepository.findRecordsWhereTimeInMoreThan15MinsAndTimeOutIsNull();
+//        log.info("SIZE: " + aaa.size());
+        parkingRecordEntities.forEach(parkingRecordEntity -> {
+            try {
+                timeOut(parkingRecordEntity.toDto());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
     }
 }

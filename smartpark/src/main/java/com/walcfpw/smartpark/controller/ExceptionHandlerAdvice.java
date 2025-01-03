@@ -13,6 +13,7 @@ public class ExceptionHandlerAdvice {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity handleException(Exception e) {
+        e.printStackTrace();
         log.error(e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
