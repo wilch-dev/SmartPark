@@ -1,9 +1,7 @@
 package com.walcfpw.smartpark.service.impl;
 
 import com.walcfpw.smartpark.data.dto.VehicleDto;
-import com.walcfpw.smartpark.data.enums.VehicleType;
 import com.walcfpw.smartpark.data.repository.VehicleRepository;
-import com.walcfpw.smartpark.data.repository.entities.ParkingLotEntity;
 import com.walcfpw.smartpark.data.repository.entities.VehicleEntity;
 import com.walcfpw.smartpark.service.VehicleService;
 import lombok.RequiredArgsConstructor;

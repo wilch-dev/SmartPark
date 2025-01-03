@@ -1,5 +1,6 @@
 package com.walcfpw.smartpark.data.repository;
 
+import com.walcfpw.smartpark.data.repository.entities.ParkingLotEntity;
 import com.walcfpw.smartpark.data.repository.entities.ParkingRecordEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,8 @@ public interface ParkingRecordRepository extends JpaRepository<ParkingRecordEnti
 
     @Query(value = "SELECT * FROM parking_record p WHERE p.time_out IS NULL AND p.time_in < CURRENT_TIMESTAMP() - INTERVAL '15' MINUTE", nativeQuery = true)
     List<ParkingRecordEntity> findRecordsWhereTimeInMoreThan15MinsAndTimeOutIsNull();
+
+    List<ParkingRecordEntity> findAllByParkingLotEntityAndTimeOutIsNull(ParkingLotEntity parkingLot);
 //
 }
 

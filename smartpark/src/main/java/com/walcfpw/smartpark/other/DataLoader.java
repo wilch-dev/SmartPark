@@ -5,7 +5,9 @@ import com.walcfpw.smartpark.data.repository.ParkingLotRepository;
 import com.walcfpw.smartpark.data.repository.VehicleRepository;
 import com.walcfpw.smartpark.data.repository.entities.ParkingLotEntity;
 import com.walcfpw.smartpark.data.repository.entities.VehicleEntity;
-import lombok.AllArgsConstructor;
+import com.walcfpw.smartpark.security.data.dto.RegisterRequest;
+import com.walcfpw.smartpark.security.data.enums.Role;
+import com.walcfpw.smartpark.security.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,6 +18,7 @@ public class DataLoader implements CommandLineRunner {
 
     private final ParkingLotRepository parkingLotRepository;
     private final VehicleRepository vehicleRepository;
+    private final AuthenticationService authenticationService;
 
 
     @Override
@@ -23,6 +26,7 @@ public class DataLoader implements CommandLineRunner {
         // Load initial data into the database
         loadSampleParkingLotDataToDb();
         loadSampleVehicleDataToDb();
+        loadAdmin();
     }
 
     public void loadSampleParkingLotDataToDb() {
@@ -31,7 +35,7 @@ public class DataLoader implements CommandLineRunner {
                 .location("7th Street")
                 .totalCapacity(3)
                 .currentlyOccupiedSlots(0)
-                .costPerMinute(10.0)
+                .costPerMinute(10.1)
                 .build();
         ParkingLotEntity parkingLot2 = ParkingLotEntity.builder()
                 .lotId("two-parkade")
@@ -71,6 +75,14 @@ public class DataLoader implements CommandLineRunner {
         vehicleRepository.save(vehicle1);
         vehicleRepository.save(vehicle2);
         vehicleRepository.save(vehicle3);
+    }
+
+    public void loadAdmin(){
+        authenticationService.register(RegisterRequest.builder()
+                        .username("admin")
+                        .password("admin")
+                        .role(Role.ADMIN)
+                .build());
     }
 
 }

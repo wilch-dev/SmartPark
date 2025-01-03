@@ -101,6 +101,13 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
         return parkingRecordEntities.parallelStream().map(parkingRecordEntity -> parkingRecordEntity.toDto()).toList();
     }
 
+    @Override
+    public List<ParkingRecordDto> getAllRecordsCurrentlyParkedInLot(ParkingRecordDto parkingRecordDto) throws Exception {
+        var parkingLot = parkingLotService.findParkingLotById(ParkingLotDto.builder().lotId(parkingRecordDto.getLotId()).build());
+        return parkingRecordRepository.findAllByParkingLotEntityAndTimeOutIsNull(parkingLot.toEntity())
+                .parallelStream().map(parkingRecordEntity -> parkingRecordEntity.toDto()).toList();
+    }
+
     private Integer convertSecondsToMinutesRoundUp(Long secondsParked){
         Long totalMins = secondsParked/60;
         // an extra second counts as a minute.
@@ -113,7 +120,8 @@ public class ParkingRecordServiceImpl implements ParkingRecordService {
     @Override
     public void getAllParkingRecordsThatArentOutIn15MinsAndTimeThemOut()throws Exception{
         List<ParkingRecordEntity> parkingRecordEntities = parkingRecordRepository.findRecordsWhereTimeInMoreThan15MinsAndTimeOutIsNull();
-//        log.info("SIZE: " + aaa.size());
+
+        // this isn't the most efficient solution but for now this'll have to do because of the time constraint that I have.
         parkingRecordEntities.forEach(parkingRecordEntity -> {
             try {
                 timeOut(parkingRecordEntity.toDto());

@@ -28,11 +28,13 @@ public class ParkingRecordActionsController {
     List<ParkingRecordDto> getAllRecords() throws Exception {
         return parkingRecordService.getAllParkingRecords();
     }
-    @GetMapping("/")
-    Boolean test() throws Exception {
-        parkingRecordService.getAllParkingRecordsThatArentOutIn15MinsAndTimeThemOut();
-        return true;
+
+    @GetMapping("/lot")
+    List<ParkingRecordDto> getAllRecordsCurrentlyParkedInLot(@RequestBody ParkingRecordDto parkingRecordDto) throws Exception {
+        return parkingRecordService.getAllRecordsCurrentlyParkedInLot(parkingRecordDto);
     }
+
+
 
 
 }
