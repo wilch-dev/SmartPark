@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:smartpark-dev-db
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+
+application:
+  security:
+    jwt:
+      secret-key: 42555a6c6773566a366a35676673395562724730664e624b39726d714c6b337a
+      expiration: 900000
+      refresh-token:
+        expiration: 900000
+#not good practice to expose security key like that but for sake of technical assessment, I'll just go with it for now.
+#expiration is in milliseconds.
+
+server:
+  port: 8080
